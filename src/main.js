@@ -3,13 +3,23 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import 'lib-flexible'
+import store from './vuex/index';
 
-Vue.config.productionTip = false
+//Components
+import DataHunterHeader from '@/components/data-hunter-header';
+import DataHunterFooter from '@/components/data-hunter-footer';
+
+Vue.config.productionTip = false;
+
+Vue.component('data-hunter-header',DataHunterHeader);
+Vue.component('data-hunter-footer',DataHunterFooter);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
-})
+  store,
+  components: { App, DataHunterHeader, DataHunterFooter },
+  template: '<App/>',
+});
