@@ -24,6 +24,7 @@
 
   footer {
     display: flex;
+    position: absolute;
     flex-direction: column;
     justify-content: center;
     align-items: center;

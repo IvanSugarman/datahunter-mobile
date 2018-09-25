@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div>
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -23,15 +25,19 @@ export default {
     box-sizing: border-box;
   }
 
-  body {
-    background-color: #efefef;
+  body, #app, html, #app > div {
     z-index: 0;
+    height: 100%;
   }
-
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .wrapper {
+    position: relative;
+    height: 100%
   }
 </style>

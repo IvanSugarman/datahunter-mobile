@@ -15,6 +15,16 @@ export default new Vuex.Store({
   getters: {
     getWorksList: state => {
       return state.workList;
+    },
+    getWorksById: state => (key) => {
+      let result = null;
+
+      state.workList.forEach((item) => {
+        if (item.id == key) {
+          result = item;
+        }
+      });
+      return result;
     }
   },
   strict: debug

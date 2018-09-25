@@ -1,39 +1,42 @@
 <template>
-  <div class="works">
-    <data-hunter-header title="所有作品"/>
-    <div class="banner"></div>
-    <div class="container">
-      <div class="title">
-        按票数排序
-      </div>
-      <ul>
-        <li v-for="item in workList" class="list-item" :key="item.id">
-          <div class="list-item__wrap">
-            <div class="list-item__img">
-              <img src="@/assets/1.jpg"/>
-            </div>
-            <div class="list-item__info">
-              <div class="list-item__title">
-                {{item.title}}
-              </div>
-              <div class="list-item__author">
-                {{item.author}}
-              </div>
-              <div class="list-item__vote">
-                当前票数 <span>{{item.votes}}</span>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <data-hunter-footer/>
+  <div class="wrapper">
+   <div id="works">
+     <data-hunter-header title="所有作品"/>
+     <banner/>
+     <div class="container">
+       <div class="title">
+         按票数排序
+       </div>
+       <ul>
+         <li v-for="item in workList" class="list-item" :key="item.id">
+           <div class="list-item__wrap">
+             <div class="list-item__img">
+               <img src="@/assets/1.jpg"/>
+             </div>
+             <div class="list-item__info">
+               <div class="list-item__title">
+                 {{item.title}}
+               </div>
+               <div class="list-item__author">
+                 {{item.author}}
+               </div>
+               <div class="list-item__vote">
+                 当前票数 <span>{{item.votes}}</span>
+               </div>
+             </div>
+           </div>
+         </li>
+       </ul>
+     </div>
+     <data-hunter-footer/>
+   </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default{
     mounted(){
+      document.getElementById("works").style.minHeight = document.documentElement.clientHeight + 'px';
       this.getWorksList();
     },
     data() {
@@ -56,13 +59,10 @@
     @return $px / $browser-default-font-size * 1rem;
   }
 
-  .works {
+  #works {
+    position: relative;
     background-color: #102131;
-  }
-
-  .banner {
-    background-color: #0e2c49;
-    height: px2em(160px);
+    padding-bottom: 60px;
   }
 
   .container {

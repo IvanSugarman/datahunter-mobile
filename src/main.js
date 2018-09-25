@@ -9,17 +9,22 @@ import store from './vuex/index';
 //Components
 import DataHunterHeader from '@/components/data-hunter-header';
 import DataHunterFooter from '@/components/data-hunter-footer';
+import Banner from '@/components/banner';
+import DataHunterDialog from '@/components/data-hunter-dialog';
 
 Vue.config.productionTip = false;
 
-Vue.component('data-hunter-header',DataHunterHeader);
-Vue.component('data-hunter-footer',DataHunterFooter);
+Vue.component('data-hunter-header', DataHunterHeader);
+Vue.component('data-hunter-footer', DataHunterFooter);
+Vue.component('banner', Banner)
+Vue.component('data-hunter-dialog', DataHunterDialog)
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  components: { App, DataHunterHeader, DataHunterFooter },
+  components: { App, DataHunterHeader, DataHunterFooter, Banner, DataHunterDialog },
   template: '<App/>',
 });
