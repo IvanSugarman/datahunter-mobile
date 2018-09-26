@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import 'lib-flexible'
 import store from './vuex/index';
+import axios from 'axios';
+import VueAxios from 'vue-axios'
 
 //Components
 import DataHunterHeader from '@/components/data-hunter-header';
@@ -13,11 +15,12 @@ import Banner from '@/components/banner';
 import DataHunterDialog from '@/components/data-hunter-dialog';
 
 Vue.config.productionTip = false;
+Vue.use(VueAxios,axios);
 
 Vue.component('data-hunter-header', DataHunterHeader);
 Vue.component('data-hunter-footer', DataHunterFooter);
-Vue.component('banner', Banner)
-Vue.component('data-hunter-dialog', DataHunterDialog)
+Vue.component('banner', Banner);
+Vue.component('data-hunter-dialog', DataHunterDialog);
 
 
 /* eslint-disable no-new */

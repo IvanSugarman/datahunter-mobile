@@ -1,6 +1,6 @@
 <template>
   <div class="Dialog__wrapper" @click="closeDialog" @touchmove.prevent>
-    <div class="Dialog">
+    <div class="Dialog" @click="prevent">
       <div class="Dialog__img">
         <img src="@/assets/success.png" alt="" v-if="this.type == 'success'">
         <img src="@/assets/error.png" alt="" v-if="this.type == 'error'">
@@ -10,7 +10,7 @@
         <p v-if="this.type == 'error'">投票次数已达到上限，</p>
         <p v-if="this.type == 'error'">请明天再投!</p>
       </div>
-      <div class="Dialog__button">查看所有作品</div>
+      <router-link tag="div" to="/works-mobile" class="Dialog__button">查看所有作品</router-link>
       <div class="Dialog__close" @click="closeDialog">×</div>
     </div>
   </div>
@@ -28,6 +28,11 @@
       closeDialog() {
         this.$emit('showDialog');
       },
+      prevent(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
     }
   };
 </script>

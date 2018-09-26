@@ -8,24 +8,24 @@
          按票数排序
        </div>
        <ul>
-         <li v-for="item in workList" class="list-item" :key="item.id">
+         <router-link tag="li" :to="'/share-mobile/' + item.id" v-for="item in workList" class="list-item" :key="item.id">
            <div class="list-item__wrap">
              <div class="list-item__img">
-               <img src="@/assets/1.jpg"/>
+               <img :src="item.content && item.content.cover"/>
              </div>
              <div class="list-item__info">
                <div class="list-item__title">
-                 {{item.title}}
+                 {{item.content && item.content.title}}
                </div>
                <div class="list-item__author">
-                 {{item.author}}
+                 {{item.content && item.content.author}}
                </div>
                <div class="list-item__vote">
-                 当前票数 <span>{{item.votes}}</span>
+                 当前票数 <span>{{item.content && item.content.votes}}</span>
                </div>
              </div>
            </div>
-         </li>
+         </router-link>
        </ul>
      </div>
      <data-hunter-footer/>
@@ -34,6 +34,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import qs from 'qs';
+
   export default{
     mounted(){
       document.getElementById("works").style.minHeight = document.documentElement.clientHeight + 'px';
@@ -46,7 +48,15 @@
     },
     methods: {
       getWorksList: function () {
-        this.workList = this.$store.getters.getWorksList;
+        this.axios.get(this.$store.getters.getUrl('work/list')).then(response => {
+          response = qs.parse(response.data);
+          response.data.map(item => {
+            if (item.content) {
+              item.content = JSON.parse(item.content);
+            }
+          });
+          this.workList = response.data;
+        });
       }
     }
   };

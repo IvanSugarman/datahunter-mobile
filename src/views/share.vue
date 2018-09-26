@@ -5,30 +5,30 @@
       <banner/>
       <div class="share-item">
         <div class="share-item__img">
-          <img src="@/assets/1.jpg" alt=""/>
+          <img :src="work.content && work.content.cover" alt=""/>
         </div>
         <div class="share-item__info">
           <div>
             <div class="left">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者</div>
             <div class="right share-item__author">
-              {{work.author}}
+              {{work.content && work.content.email}}
             </div>
           </div>
           <div>
-            <div class="left">作者名称</div>
+            <div class="left">作品名称</div>
             <div class="right share-item__title">
-              {{work.title}}
+              {{work.content && work.content.name}}
             </div>
           </div>
           <div>
-            <div class="left">作者简介</div>
+            <div class="left">作品简介</div>
             <div class="right share-item__description">
-              {{work.description}}
+              {{work.content && work.content.description}}
             </div>
           </div>
         </div>
       </div>
-      <div class="button" @click="showDialog(1)">投票</div>
+      <div class="button" @click="vote">投票</div>
       <div class="legend">
         <p>投票说明</p>
         <ul>
@@ -45,10 +45,12 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import qs from 'qs'
+
   export default{
     mounted() {
       document.getElementById("share").style.minHeight = document.documentElement.clientHeight + 'px';
-      this.work = this.getWorksById(1);
+      this.getWorksById();
     },
     data() {
       return {
@@ -59,7 +61,29 @@
     },
     methods: {
       getWorksById(id) {
-        return this.$store.getters.getWorksById(id);
+        this.axios.get(this.$store.getters.getUrl('work/one?wid=' + this.$route.params.id)).then(response => {
+          response.data.data.content = JSON.parse(response.data.data.content);
+          this.work = response.data.data;
+        });
+      },
+      vote() {
+        let uid = 13;
+        let wid = this.$route.params.id;
+        let params = {
+          uid,
+          wid,
+        };
+
+        this.axios.post(this.$store.getters.getUrl('vote'), qs.stringify(params),
+          {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(res => {
+          if (res.data.code == -2) {
+            alert('已经给这个作品投过票了');
+          } else if (res.data.code == -1) {
+            this.showDialog(2);
+          } else {
+            this.showDialog(1);
+          }
+        });
       },
       showDialog(type) {
         if (type == 1) {
@@ -74,9 +98,9 @@
         }
       },
       stopScrolling(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
       }
     }
   };

@@ -13,17 +13,8 @@ Vue.config.debug = debug;
 export default new Vuex.Store({
   state,
   getters: {
-    getWorksList: state => {
-      return state.workList;
-    },
-    getWorksById: state => (key) => {
-      let result = null;
-
-      state.workList.forEach((item) => {
-        if (item.id == key) {
-          result = item;
-        }
-      });
+    getUrl: state => (key) => {
+      let result = state.prefix + key;
       return result;
     }
   },
