@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :class="{ wrapper__hidden: showSuccess || showError }">
+  <div class="wrapper">
     <div id="share">
       <data-hunter-header title="作品分享"/>
       <banner/>
@@ -38,9 +38,9 @@
         </ul>
       </div>
       <data-hunter-footer/>
+      <data-hunter-dialog type="success" v-show="showSuccess" @showDialog="showDialog"/>
+      <data-hunter-dialog type="error" v-show="showError" @showDialog="showDialog"/>
     </div>
-    <data-hunter-dialog type="success" v-if="showSuccess" @showDialog="showDialog"/>
-    <data-hunter-dialog type="error" v-if="showError" @showDialog="showDialog"/>
   </div>
 </template>
 
@@ -72,6 +72,11 @@
           this.showError = false;
           this.showSuccess = false;
         }
+      },
+      stopScrolling(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
       }
     }
   };
@@ -88,10 +93,6 @@
     position: relative;
     background-color: #102131;
     padding-bottom: 60px;
-  }
-
-  .wrapper__hidden {
-    overflow: hidden;
   }
 
   .share-item {

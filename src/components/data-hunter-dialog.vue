@@ -1,5 +1,5 @@
 <template>
-  <div class="Dialog__wrapper" @click="closeDialog">
+  <div class="Dialog__wrapper" @click="closeDialog" @touchmove.prevent>
     <div class="Dialog">
       <div class="Dialog__img">
         <img src="@/assets/success.png" alt="" v-if="this.type == 'success'">
@@ -27,7 +27,7 @@
     methods: {
       closeDialog() {
         this.$emit('showDialog');
-      }
+      },
     }
   };
 </script>
@@ -48,7 +48,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     width: 280px;
@@ -57,6 +57,7 @@
     padding: 30px;
     transform: translate(-50%, -50%);
     border-radius: 4px;
+    overflow: auto;
   }
 
   .Dialog__img {
