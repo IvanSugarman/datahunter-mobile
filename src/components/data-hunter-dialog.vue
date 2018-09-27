@@ -10,7 +10,10 @@
         <p v-if="this.type == 'error'">投票次数已达到上限，</p>
         <p v-if="this.type == 'error'">请明天再投!</p>
       </div>
-      <router-link tag="div" to="/works-mobile" class="Dialog__button">查看所有作品</router-link>
+      <div class="Dialog__login">
+        <router-link tag="div" to="/works-mobile" class="Dialog__button">查看所有作品</router-link>
+        <router-link tag="div" to="/works-mobile" class="Dialog__button_join">我要参加</router-link>
+      </div>
       <div class="Dialog__close" @click="closeDialog">×</div>
     </div>
   </div>
@@ -21,7 +24,6 @@
     props: ['type', 'title'],
     data() {
       return {
-          showDialog: false,
       };
     },
     methods: {
@@ -87,13 +89,31 @@
     text-align: center;
   }
 
+  .Dialog__login {
+    width: 250px;
+    display: flex;
+    margin-top: 25px;
+    justify-content: space-around;
+  }
+
+
   .Dialog__button {
-    margin-top: 31px;
-    width: 140px;
+    width: 120px;
     height: 34px;
     text-align: center;
     background-image: linear-gradient(37deg, #1ED884 0%, #4DFF58 94%);
     color: #fff;
+    font-size: 14px;
+    line-height: 34px;
+    border-radius: 100px;
+  }
+
+  .Dialog__button_join {
+    width: 120px;
+    height: 34px;
+    text-align: center;
+    border: 1px solid #23C132;
+    color: #23C132;
     font-size: 14px;
     line-height: 34px;
     border-radius: 100px;

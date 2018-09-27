@@ -25,8 +25,8 @@
     padding: px2em(39px) px2em(24px) px2em(49px);
     height: px2em(160px);
     color: #fff;
-    background-color: #0e2c49;
-
+    background: url("/static/banner.png") no-repeat;
+    background-size: 100% 100%;
     p {
       font-size: px2em(14px);
       line-height: 24px;
@@ -34,7 +34,7 @@
 
     p:nth-child(2) {
       font-size: px2em(18px);
-      line-height: 28px;
+      line-height: 25px;
     }
   }
 </style>
