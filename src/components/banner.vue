@@ -25,7 +25,7 @@
     padding: px2em(39px) px2em(24px) px2em(49px);
     height: px2em(160px);
     color: #fff;
-    background: url("/static/banner.png") no-repeat;
+    background: url("../../static/banner.png") no-repeat;
     background-size: 100% 100%;
     p {
       font-size: px2em(14px);

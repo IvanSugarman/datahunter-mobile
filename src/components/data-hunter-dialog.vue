@@ -12,7 +12,7 @@
       </div>
       <div class="Dialog__login">
         <router-link tag="div" to="/works-mobile" class="Dialog__button">查看所有作品</router-link>
-        <router-link tag="div" to="/works-mobile" class="Dialog__button_join">我要参加</router-link>
+        <router-link tag="div" to="/sign-mobile" class="Dialog__button_join">我要参加</router-link>
       </div>
       <div class="Dialog__close" @click="closeDialog">×</div>
     </div>

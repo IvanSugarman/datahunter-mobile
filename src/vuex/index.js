@@ -18,5 +18,10 @@ export default new Vuex.Store({
       return result;
     }
   },
+  mutations: {
+    setUid: function(state, uid) {
+      state.uid = uid;
+    }
+  },
   strict: debug
 });

@@ -67,7 +67,7 @@
         });
       },
       vote() {
-        let uid = 13;
+        let uid = this.$route.query.bsh_bid || 0;
         let wid = this.$route.params.id;
         let params = {
           uid,

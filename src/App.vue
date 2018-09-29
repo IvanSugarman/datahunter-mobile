@@ -7,9 +7,16 @@
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  export default {
+    created(){
+        if (!localStorage.getItem('isFirstLogin')) {
+          let origin = location.href;
+          window.location.href = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=" + origin;
+          localStorage.setItem('isFirstLogin', true);
+        }
+    },
+    name: 'App'
+  }
 </script>
 
 <style lang="scss" rel="stylesheet/scss">
