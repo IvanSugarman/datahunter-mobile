@@ -56,7 +56,7 @@
     height: px2em(46px);
     color: #fff;
     font-size: px2em(16px);
-    background: -webkit-linear-gradient(37deg, #1ed884 0%, #fdff58 94%);
+    background: -webkit-linear-gradient(37deg, #1ED884 0%, #4DFF58 94%);
     border-radius: px2em(100px);
   }
 

@@ -3,12 +3,13 @@
     <div class="Dialog" @click="prevent">
       <div class="Dialog__img">
         <img src="@/assets/success.png" alt="" v-if="this.type == 'success'">
-        <img src="@/assets/error.png" alt="" v-if="this.type == 'error'">
+        <img src="@/assets/error.png" alt="" v-if="this.type == 'error' || this.type == 'alert'">
       </div>
       <div class="Dialog__title">
         <p v-if="this.type == 'success'">投票成功!</p>
         <p v-if="this.type == 'error'">投票次数已达到上限，</p>
         <p v-if="this.type == 'error'">请明天再投!</p>
+        <p v-if="this.type == 'alert'">已经给这个作品投过票了</p>
       </div>
       <div class="Dialog__login">
         <router-link tag="div" to="/works-mobile" class="Dialog__button">查看所有作品</router-link>
@@ -61,7 +62,6 @@
     width: 280px;
     height: 200px;
     background: #fff;
-    padding: 30px;
     transform: translate(-50%, -50%);
     border-radius: 4px;
     overflow: auto;
@@ -90,9 +90,9 @@
   }
 
   .Dialog__login {
-    width: 250px;
+    width: 260px;
     display: flex;
-    margin-top: 25px;
+    margin-top: 20px;
     justify-content: space-around;
   }
 

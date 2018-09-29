@@ -9,15 +9,15 @@
         </div>
         <div class="share-item__info">
           <div>
-            <div class="left">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者</div>
-            <div class="right share-item__author">
-              {{work.content && work.content.email}}
-            </div>
-          </div>
-          <div>
             <div class="left">作品名称</div>
             <div class="right share-item__title">
               {{work.content && work.content.name}}
+            </div>
+          </div>
+          <div>
+            <div class="left">作者</div>
+            <div class="right share-item__author">
+              {{work.content && work.content.email}}
             </div>
           </div>
           <div>
@@ -40,6 +40,7 @@
       <data-hunter-footer/>
       <data-hunter-dialog type="success" v-show="showSuccess" @showDialog="showDialog"/>
       <data-hunter-dialog type="error" v-show="showError" @showDialog="showDialog"/>
+      <data-hunter-dialog type="alert" v-show="showAlert" @showDialog="showDialog"/>
     </div>
   </div>
 </template>
@@ -57,6 +58,7 @@
         work: {},
         showSuccess: false,
         showError: false,
+        showAlert: true,
       };
     },
     methods: {
@@ -77,7 +79,7 @@
         this.axios.post(this.$store.getters.getUrl('vote'), qs.stringify(params),
           {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(res => {
           if (res.data.code == -2) {
-            alert('已经给这个作品投过票了');
+            this.showDialog(3);
           } else if (res.data.code == -1) {
             this.showDialog(2);
           } else {
@@ -87,14 +89,15 @@
       },
       showDialog(type) {
         if (type == 1) {
-          this.showError = false;
           this.showSuccess = true;
         } else if (type == 2) {
           this.showError = true;
-          this.showSuccess = false;
+        } else if (type == 3) {
+          this.showAlert = true;
         } else if (!type) {
           this.showError = false;
           this.showSuccess = false;
+          this.showAlert = false;
         }
       },
       stopScrolling(e) {
@@ -130,21 +133,24 @@
     flex-direction: column;
     margin-top: px2em(17px);
     div {
-      display: flex;
-      justify-content: space-between;
       margin-bottom: px2em(7px);
       min-height: 20px;
       line-height: 20px;
       .left {
-        flex: 0 0 18%;
         color: rgba(255, 255, 255, .6);
         font-size: px2em(14px);
 
       }
       .right {
-        flex: 0 0 75%;
         font-size: px2em(14px);
         color: #fff;
+      }
+      .share-item__description {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
       }
     }
   }
@@ -169,12 +175,12 @@
     height: px2em(46px);
     color: #fff;
     font-size: px2em(16px);
-    background: -webkit-linear-gradient(37deg, #1ed884 0%, #fdff58 94%);
+    background: -webkit-linear-gradient(37deg, #1ED884 0%, #4DFF58 94%);
     border-radius: px2em(100px);
   }
 
   .legend {
-    margin: px2em(40px) px2em(20px) 0;
+    margin: px2em(40px) px2em(20px) px2em(27px);
     color: rgba(255, 255, 255, .8);
     font-size: px2em(14px);
     line-height: 20px;
@@ -187,6 +193,7 @@
       list-style-type: none;
       li {
         position: relative;
+        margin-bottom: px2em(7px);
         &:before {
           position: absolute;
           top: 6px;
@@ -200,4 +207,5 @@
       }
     }
   }
+
 </style>
