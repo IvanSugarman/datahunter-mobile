@@ -4,7 +4,7 @@
       <data-hunter-header title="报名"/>
       <banner/>
       <div class="info">点击下方按钮，立即注册</div>
-      <a href="https://www.datahunter.cn/">
+      <a href="http://analytics.datahunter.cn/account/#/register">
         <div class="button">
           立即注册
         </div>
