@@ -1,18 +1,21 @@
 <template>
   <div class="wrapper">
-   <div id="sign">
-     <data-hunter-header title="报名"/>
-     <banner/>
-     <div class="info">点击下方按钮，立即注册</div>
-     <div class="button">
-       立即注册
-     </div>
-     <div class="qrcode">
-       <img src="@/assets/wechat.png">
-     </div>
-     <p class="info-2">注册完成后，视为自动报名成功。</p>
-     <data-hunter-footer/>
-   </div>
+    <div id="sign">
+      <data-hunter-header title="报名"/>
+      <banner/>
+      <div class="info">点击下方按钮，立即注册</div>
+      <a href="https://www.datahunter.cn/">
+        <div class="button">
+          立即注册
+        </div>
+      </a>
+      <p class="info-2">注册完成后，视为自动报名成功。</p>
+      <div class="qrcode">
+        <img src="@/assets/wechat.png">
+      </div>
+      <p class="info-2 info-3">加小助手可进交流群，请备注“可视化大赛”</p>
+      <data-hunter-footer/>
+    </div>
   </div>
 </template>
 
@@ -47,6 +50,10 @@
     color: rgba(255, 255, 255, .8);
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .button {
     display: flex;
     justify-content: center;
@@ -61,7 +68,7 @@
   }
 
   .qrcode {
-    margin: px2em(70px) auto px2em(10px);
+    margin: px2em(30px) auto px2em(10px);
     width: px2em(100px);
     height: px2em(100px);
     img {
@@ -75,7 +82,12 @@
     text-align: center;
     color: rgba(255, 255, 255, .8);
     font-size: px2em(12px);
+    margin-top: px2em(10px);
     line-height: px2em(36px);
+  }
+
+  .info-3 {
+    margin-top: px2em(20px);
   }
 
 </style>
