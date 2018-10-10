@@ -16,11 +16,12 @@ export default new Vuex.Store({
     getUrl: state => (key) => {
       let result = state.prefix + key;
       return result;
-    }
+    },
+    getUid: state => state.uid,
   },
   mutations: {
-    setUid: function(state, uid) {
-      state.uid = uid;
+    setUid: function(state, payload) {
+      state.uid = payload.uid;
     }
   },
   strict: debug

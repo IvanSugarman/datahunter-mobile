@@ -3,4 +3,5 @@
  */
 export default {
   prefix: 'http://www.geek-scorpion.com/vote/',
+  uid: 0,
 };

@@ -15,13 +15,13 @@
              </div>
              <div class="list-item__info">
                <div class="list-item__title">
-                 {{item.content && item.content.title}}
+                 {{item.content && item.content.name || '暂无数据' }}
                </div>
                <div class="list-item__author">
-                 {{item.content && item.content.author}}
+                 {{item.content && item.content.author || '暂无数据'}}
                </div>
                <div class="list-item__vote">
-                 当前票数 <span>{{item.content && item.content.votes}}</span>
+                 当前票数 <span>{{item.votes}}</span>
                </div>
              </div>
            </div>

@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <div class="wrapper">
     <div id="share">
       <data-hunter-header title="作品分享"/>
@@ -17,7 +17,7 @@
           <div>
             <div class="left">作者</div>
             <div class="right share-item__author">
-              {{work.content && work.content.email}}
+              {{work.content && work.content.author}}
             </div>
           </div>
           <div>
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="button" @click="vote">投票</div>
+      <div class="button" @click="vote" v-bind:class="{ 'button-disabled': disabled }">投票</div>
       <div class="legend">
         <p>投票说明</p>
         <ul>
@@ -47,29 +47,63 @@
 
 <script type="text/ecmascript-6">
   import qs from 'qs'
+  import jsonp from 'jsonp'
+  import wx from 'weixin-js-sdk'
 
   export default{
     mounted() {
       document.getElementById("share").style.minHeight = document.documentElement.clientHeight + 'px';
+      this.$store.commit('setUid', { uid: this.$route.query.openid });
+      this.axios.get(this.$store.getters.getUrl('isVote?uid=' + this.$route.query.openid + '&wid=' + this.$route.params.id)).then(res => {
+        this.disabled = res.data.data;
+      });
       this.getWorksById();
     },
     data() {
       return {
+        disabled: false,
         work: {},
         showSuccess: false,
         showError: false,
-        showAlert: true,
+        showAlert: false,
       };
     },
     methods: {
-      getWorksById(id) {
+      getWorksById() {
         this.axios.get(this.$store.getters.getUrl('work/one?wid=' + this.$route.params.id)).then(response => {
           response.data.data.content = JSON.parse(response.data.data.content);
           this.work = response.data.data;
+          this.wxShare();
         });
       },
+      wxShare() {
+        var url = encodeURIComponent(window.location.href);
+        var shareImgUrl = this.work.content && this.work.content.cover;
+        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://case.geek-scorpion.com/dataHunterMobile/share-mobile/" + this.$route.params.id;
+
+        jsonp('http://www.geek-scorpion.com/wechat/jssdk?url=' + url, {param: 'jsoncallback'}, (err, data) => {
+          if (err) {
+            console.error(err.message);
+          } else {
+            wx.config(data);
+            wx.ready(function () {
+              wx.onMenuShareAppMessage({
+                title: 'DataHunter可视化之星大赛',
+                desc: '来选择你中意的作品进行投票吧',
+                link: shareLinkUrl,
+                imgUrl: shareImgUrl
+              });
+              wx.onMenuShareTimeline({
+                title: 'DataHunter可视化之星大赛',
+                link: shareLinkUrl,
+                imgUrl: shareImgUrl
+              });
+            });
+          }
+        })
+      },
       vote() {
-        let uid = this.$route.query.bsh_bid || 0;
+        let uid = this.$store.getters.getUid;
         let wid = this.$route.params.id;
         let params = {
           uid,
@@ -107,6 +141,7 @@
       }
     }
   };
+
 </script>
 
 <style scoped lang="scss" rel="stylesheet/scss">
@@ -177,6 +212,12 @@
     font-size: px2em(16px);
     background: -webkit-linear-gradient(37deg, #1ED884 0%, #4DFF58 94%);
     border-radius: px2em(100px);
+  }
+
+  .button-disabled {
+    cursor: default;
+    background: #A9A9A9;
+    color: #cccccc;
   }
 
   .legend {
