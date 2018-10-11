@@ -53,7 +53,6 @@
   export default{
     mounted() {
       document.getElementById("share").style.minHeight = document.documentElement.clientHeight + 'px';
-      this.$store.commit('setUid', { uid: this.$route.query.openid });
       this.axios.get(this.$store.getters.getUrl('isVote?uid=' + this.$route.query.openid + '&wid=' + this.$route.params.id)).then(res => {
         this.disabled = res.data.data;
       });
