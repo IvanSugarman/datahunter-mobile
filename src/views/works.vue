@@ -53,6 +53,8 @@
     methods: {
       wxShare() {
         var url = encodeURIComponent(window.location.href);
+        var shareImgUrl = "http://case.geek-scorpion.com/dataHunterMobile/static/logo.png";
+//        var shareImgUrl = "http://vote.datahunter.cn/dataHunterMobile/static/logo.png";
         var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://www.geek-scorpion.com/dataHunterMobile/works-mobile/";
 //        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://vote.datahunter.cn/dataHunterMobile/works-mobile/";
 
@@ -63,12 +65,14 @@
             wx.config(data);
             wx.ready(function () {
               wx.onMenuShareAppMessage({
-                title: 'DataHunter可视化之星大赛',
-                desc: '来选择你中意的作品进行投票吧',
+                title: '我正在参加首届数据可视化之星大赛，快来投我一票！',
+                desc: '精彩的可视化作品，了解一下？',
+                imgUrl: shareImgUrl,
                 link: shareLinkUrl,
               });
               wx.onMenuShareTimeline({
-                title: 'DataHunter可视化之星大赛',
+                title: '我正在参加首届数据可视化之星大赛，快来投我一票！',
+                imgUrl: shareImgUrl,
                 link: shareLinkUrl,
               });
             });

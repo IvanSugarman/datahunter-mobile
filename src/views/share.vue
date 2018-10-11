@@ -88,13 +88,13 @@
             wx.config(data);
             wx.ready(function () {
               wx.onMenuShareAppMessage({
-                title: 'DataHunter可视化之星大赛',
-                desc: '来选择你中意的作品进行投票吧',
+                title: '我正在参加首届数据可视化之星大赛，快来投我一票！',
+                desc: '精彩的可视化作品，了解一下？',
                 link: shareLinkUrl,
                 imgUrl: shareImgUrl
               });
               wx.onMenuShareTimeline({
-                title: 'DataHunter可视化之星大赛',
+                title: '我正在参加首届数据可视化之星大赛，快来投我一票！',
                 link: shareLinkUrl,
                 imgUrl: shareImgUrl
               });
