@@ -20,13 +20,42 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import jsonp from 'jsonp'
+  import wx from 'weixin-js-sdk'
+
   export default{
     mounted() {
       document.getElementById("sign").style.minHeight = document.documentElement.clientHeight + 'px';
+      this.wxShare();
     },
     data() {
       return {};
     },
+    methods: {
+      wxShare() {
+        var url = encodeURIComponent(window.location.href);
+        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://vote.datahunter.cn/dataHunterMobile/sign-mobile/";
+
+        jsonp('http://www.geek-scorpion.com/wechat/jssdk?url=' + url, {param: 'jsoncallback'}, (err, data) => {
+          if (err) {
+            console.error(err.message);
+          } else {
+            wx.config(data);
+            wx.ready(function () {
+              wx.onMenuShareAppMessage({
+                title: 'DataHunter可视化之星大赛',
+                desc: '来选择你中意的作品进行投票吧',
+                link: shareLinkUrl,
+              });
+              wx.onMenuShareTimeline({
+                title: 'DataHunter可视化之星大赛',
+                link: shareLinkUrl,
+              });
+            });
+          }
+        })
+      },
+    }
   };
 </script>
 

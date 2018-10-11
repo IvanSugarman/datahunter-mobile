@@ -10,7 +10,7 @@
   export default {
     mounted(){
       if (!this.$route.query.openid) {
-          let origin = location.href;
+          let origin = window.location.href;
           window.location.href = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=" + origin;
       }
       this.$store.commit('setUid', { uid: this.$route.query.openid });

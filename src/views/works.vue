@@ -8,7 +8,7 @@
          按票数排序
        </div>
        <ul>
-         <router-link tag="li" :to="'/share-mobile/' + item.id" v-for="item in workList" class="list-item" :key="item.id">
+         <router-link tag="li" :to="'/share-mobile/' + item.id + '?openid=' + uid" v-for="item in workList" class="list-item" :key="item.id">
            <div class="list-item__wrap">
              <div class="list-item__img">
                <img :src="item.content && item.content.cover"/>
@@ -47,6 +47,7 @@
     data() {
       return {
         workList: [],
+        uid: this.$store.getters.getUid,
       };
     },
     methods: {
