@@ -78,8 +78,8 @@
       wxShare() {
         var url = encodeURIComponent(window.location.href);
         var shareImgUrl = this.work.content && this.work.content.cover;
-        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://case.geek-scorpion.com/dataHunterMobile/share-mobile/" + this.$route.params.id;
-//        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://vote.datahunter.cn/dataHunterMobile/share-mobile/" + this.$route.params.id;
+//        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://case.geek-scorpion.com/dataHunterMobile/share-mobile/" + this.$route.params.id;
+        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://vote.datahunter.cn/dataHunterMobile/share-mobile/" + this.$route.params.id;
 
         jsonp('http://www.geek-scorpion.com/wechat/jssdk?url=' + url, {param: 'jsoncallback'}, (err, data) => {
           if (err) {

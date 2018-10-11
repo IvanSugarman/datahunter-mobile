@@ -34,10 +34,10 @@
     methods: {
       wxShare() {
         var url = encodeURIComponent(window.location.href);
-        var shareImgUrl = "http://case.geek-scorpion.com/dataHunterMobile/static/logo.png";
-//        var shareImgUrl = "http://vote.datahunter.cn/dataHunterMobile/static/logo.png";
-        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://www.geek-scorpion.com/dataHunterMobile/sign-mobile/";
-//        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://vote.datahunter.cn/dataHunterMobile/sign-mobile/";
+//        var shareImgUrl = "http://case.geek-scorpion.com/dataHunterMobile/static/logo.png";
+        var shareImgUrl = "http://vote.datahunter.cn/dataHunterMobile/static/logo.png";
+//        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://www.geek-scorpion.com/dataHunterMobile/sign-mobile/";
+        var shareLinkUrl = "http://www.geek-scorpion.com/wechat/oauth/base?redirect=http://vote.datahunter.cn/dataHunterMobile/sign-mobile/";
 
         jsonp('http://www.geek-scorpion.com/wechat/jssdk?url=' + url, {param: 'jsoncallback'}, (err, data) => {
           if (err) {
