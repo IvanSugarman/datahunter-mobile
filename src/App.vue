@@ -2,6 +2,9 @@
   <div id="app">
     <div>
       <router-view/>
+      <span style="display: none">
+        <script src=https://s22.cnzz.com/z_stat.php?id=1275131137&web_id=1275131137" language="JavaScript"></script>
+      </span>
     </div>
   </div>
 </template>
